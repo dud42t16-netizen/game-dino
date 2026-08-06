@@ -98,20 +98,25 @@ function desenharPonto() {
      ctx.fillText("Pontos: " + pontuacao, canvas.width / 13, canvas.height / 10);
 }
 
-function teclapressionada(evento) {
-    if (evento.code === "Space" && dinoY === chao - dinoAltura) {
+function pular() {
+     if (dinoY === chao - dinoAltura) {
         velocidadeY = -10;
+    }
+}
+function teclapressionada(evento) {
+    if (evento.code === "Space") {
+        pular();
     }
     if (evento.code === "KeyR" && gameOver) {
         reiniciarJogo();
         atualizar();
     }
 }
-document.addEventListener("touchstart",);function toque(evento) {
-    if (evento.code === "touchstart" && dinoY === chao - dinoAltura) {
-        velocidadeY = -10;
-    }
-}
+//function toque(evento) {
+  //  if (evento.code === "touchstart" && dinoY === chao - dinoAltura) {
+//        velocidadeY = -10;
+    //}
+//}
 
 function reiniciarJogo() {
     gameOver = false;
