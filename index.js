@@ -107,9 +107,8 @@ function teclapressionada(evento) {
         atualizar();
     }
 }
-function toque(evento) {
+document.addEventListener("touchstart",);function toque(evento) {
     if (evento.code === "touchstart" && dinoY === chao - dinoAltura) {
-        document.addEventListener("touchstart", toque);
         velocidadeY = -10;
     }
 }
