@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+canvas {
+    background-color: rgba(220, 239, 255, 0.956);
+    border: 2px dashed rgb(70, 143, 207); 
+}
