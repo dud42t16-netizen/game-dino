@@ -112,11 +112,6 @@ function teclapressionada(evento) {
         atualizar();
     }
 }
-//function toque(evento) {
-  //  if (evento.code === "touchstart" && dinoY === chao - dinoAltura) {
-//        velocidadeY = -10;
-    //}
-//}
 
 function reiniciarJogo() {
     gameOver = false;
