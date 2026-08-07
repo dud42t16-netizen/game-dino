@@ -16,12 +16,12 @@ let gravidade = 0.5;
 
 //CACTOCOMEÇO//
 let cactoLargura = 50;
-let cactoAltura = 40;
+let cactoAltura = 35;
 let cactoX = canvas.width;
 let cactoY = chao - cactoAltura;
 
 let cactoVelocidade = 4; 
-let aumentoVelocidade = 0.2
+const aumentoVelocidade = 0.2;
 //CACTOFIM//
 
 let gameOver = false;
@@ -40,11 +40,11 @@ function atualizar() {
 
     cactoX -= cactoVelocidade;
 
-    desenharDino()
+    desenharDino();
 
-    desenharCacto()
+    desenharCacto();
 
-    desenharPonto()
+    desenharPonto();
 
      if (cactoX < -cactoLargura) {
        cactoX = canvas.width;
@@ -64,10 +64,11 @@ function atualizar() {
     
     if (gameOver) {
         ctx.textAlign = "center";
-        ctx.font = '30px arial';
+        ctx.font = '30px Arial';
         ctx.fillStyle = "black";
-        ctx.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2);
-        ctx.fillText("aperte R para reiniciar o jogo!", canvas.width / 2, canvas.height / 1.6);
+        ctx.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2.4);
+        ctx.fillText("aperte R para reiniciar o jogo!", canvas.width / 2, canvas.height / 1.8);
+        ctx.fillText("ou toque na tela!", canvas.width / 2, canvas.height / 1.5)
 
         return;
     }
@@ -113,6 +114,16 @@ function teclapressionada(evento) {
     }
 }
 
+function toquenatela() {
+    if (gameOver) {
+        reiniciarJogo();
+        atualizar();
+    }
+    else {
+        pular();
+    }
+}
+
 function reiniciarJogo() {
     gameOver = false;
     pontuacao = 0;
@@ -120,8 +131,11 @@ function reiniciarJogo() {
 
     dinoY = chao - dinoAltura;
     velocidadeY = 0;
+    cactoVelocidade = 4;
 
     cactoX = canvas.width;
 }
 
 document.addEventListener("keydown", teclapressionada);
+canvas.addEventListener("touchstart", pular);
+canvas.addEventListener("touchstart", toquenatela);
