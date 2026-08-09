@@ -28,6 +28,20 @@ let gameOver = false;
 let pontoContado = false;
 let pontuacao = 0;
 
+function tamanhoCanvas() {
+    let canvasLargura = window.innerWidth;
+    let canvasAltura = window.innerHeight;
+
+    if (canvasLargura / 2 <= canvasAltura) {
+        canvas.width = canvasLargura + "px";
+        canvas.height = (canvasLargura / 2) + "px";
+    }
+    else {
+        canvas.height = canvasAltura + "px";
+        canvas.width = (canvasAltura * 2) + "px";
+    }
+}
+
 function atualizar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -81,6 +95,8 @@ function atualizar() {
 
     requestAnimationFrame(atualizar);
 }
+
+tamanhoCanvas();
 atualizar();
 
 function desenharDino() {
@@ -137,5 +153,6 @@ function reiniciarJogo() {
 }
 
 document.addEventListener("keydown", teclapressionada);
+window.addEventListener("resize", tamanhoCanvas);
 canvas.addEventListener("touchstart", pular);
 canvas.addEventListener("touchstart", toquenatela);
