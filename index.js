@@ -27,18 +27,19 @@ const aumentoVelocidade = 0.2;
 let gameOver = false;
 let pontoContado = false;
 let pontuacao = 0;
+let recorde = 0;
 
 function tamanhoCanvas() {
     let canvasLargura = window.innerWidth;
     let canvasAltura = window.innerHeight;
 
     if (canvasLargura / 2 <= canvasAltura) {
-        canvas.width = canvasLargura + "px";
-        canvas.height = (canvasLargura / 2) + "px";
+        canvas.style.width = canvasLargura //+ //"px";
+        canvas.style.height = (canvasLargura / 2) //+ //"px";
     }
     else {
-        canvas.height = canvasAltura + "px";
-        canvas.width = (canvasAltura * 2) + "px";
+        canvas.height = canvasAltura //+ "px";
+        canvas.width = (canvasAltura * 2) //+ "px";
     }
 }
 
@@ -90,6 +91,11 @@ function atualizar() {
     if (cactoX + cactoLargura < dinoX && !pontoContado) {
         pontuacao++;
         pontoContado = true;
+
+        if (pontuacao > recorde) {
+            recorde = pontuacao;
+        }
+
         cactoVelocidade += aumentoVelocidade;
     }
 
@@ -113,6 +119,7 @@ function desenharPonto() {
      ctx.font = '25px Arial';
      ctx.fillStyle = "black"
      ctx.fillText("Pontos: " + pontuacao, canvas.width / 13, canvas.height / 10);
+     ctx.fillText("recorde:🏆" + recorde, canvas.width / 13, canvas.height / 5);
 }
 
 function pular() {
