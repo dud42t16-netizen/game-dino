@@ -94,6 +94,7 @@ function atualizar() {
 
         if (pontuacao > recorde) {
             recorde = pontuacao;
+            localStorage.setItem("recorde", recorde.toString());
         }
 
         cactoVelocidade += aumentoVelocidade;
@@ -157,6 +158,10 @@ function reiniciarJogo() {
     cactoVelocidade = 4;
 
     cactoX = canvas.width;
+}
+
+function carregarRecorde() {
+    
 }
 
 document.addEventListener("keydown", teclapressionada);
