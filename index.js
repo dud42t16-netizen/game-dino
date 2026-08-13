@@ -104,6 +104,7 @@ function atualizar() {
 }
 
 tamanhoCanvas();
+carregarRecorde();
 atualizar();
 
 function desenharDino() {
@@ -161,7 +162,11 @@ function reiniciarJogo() {
 }
 
 function carregarRecorde() {
-    
+    let recordeSalvo = localStorage.getItem("recorde");
+
+    if (recordeSalvo !== null) {
+        recorde = Number(recordeSalvo);
+    }
 }
 
 document.addEventListener("keydown", teclapressionada);
