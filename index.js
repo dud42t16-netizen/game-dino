@@ -12,6 +12,9 @@ let dinoY = chao - dinoAltura;
 
 let velocidadeY = 0;
 let gravidade = 0.5;
+
+let frameDino = 0;
+let contadorAnimacao = 0;
 //dinofim//
 
 //CACTOCOMEÇO//
@@ -100,6 +103,11 @@ function atualizar() {
         cactoVelocidade += aumentoVelocidade;
     }
 
+    if (contadorAnimacao >= 10) {
+       contadorAnimacao = 0;
+       frameDino = 1 - frameDino;
+    }
+
     requestAnimationFrame(atualizar);
 }
 
@@ -121,7 +129,7 @@ function desenharPonto() {
      ctx.font = '25px Arial';
      ctx.fillStyle = "black"
      ctx.fillText("Pontos: " + pontuacao, canvas.width / 13, canvas.height / 10);
-     ctx.fillText("recorde:🏆" + recorde, canvas.width / 13, canvas.height / 5);
+     ctx.fillText("recorde:🏆" + recorde, canvas.width / 9, canvas.height / 5);
 }
 
 function pular() {
