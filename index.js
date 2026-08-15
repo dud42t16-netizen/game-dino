@@ -11,7 +11,7 @@ let dinoX = 100;
 let dinoY = chao - dinoAltura;
 
 let velocidadeY = 0;
-let gravidade = 0.5;
+let gravidade = 0.4;
 
 let frameDino = 0;
 let contadorAnimacao = 0;
@@ -23,8 +23,8 @@ let cactoAltura = 35;
 let cactoX = canvas.width;
 let cactoY = chao - cactoAltura;
 
-let cactoVelocidade = 4; 
-const aumentoVelocidade = 0.2;
+let cactoVelocidade = 5; 
+const aumentoVelocidade = 0.1;
 //CACTOFIM//
 
 let gameOver = false;
