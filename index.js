@@ -4,8 +4,8 @@ const ctx = canvas.getContext("2d");
 let chao = 361;
 
 //dinocomeço//
-let dinoLargura = 50;
-let dinoAltura = 40;
+let dinoLargura = 60;
+let dinoAltura = 50;
 
 let dinoX = 100;
 let dinoY = chao - dinoAltura;
@@ -15,6 +15,13 @@ let gravidade = 0.4;
 
 let frameDino = 0;
 let contadorAnimacao = 0;
+let imagensDino = [];
+
+for (let i = 1; i <= 4; i++) {
+    let imagem = new Image();
+    imagem.src = `dino.png/dino_correndo_${i}.png`;
+    imagensDino.push(imagem);
+}
 //dinofim//
 
 //CACTOCOMEÇO//
@@ -48,6 +55,12 @@ function tamanhoCanvas() {
 
 function atualizar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    contadorAnimacao++;
+    if (contadorAnimacao >= 10) {
+        contadorAnimacao = 0;
+        frameDino = (frameDino + 1) % 4;
+    }
 
     dinoY += velocidadeY;
     velocidadeY += gravidade;
@@ -116,8 +129,7 @@ carregarRecorde();
 atualizar();
 
 function desenharDino() {
-    ctx.fillStyle = "black";
-    ctx.fillRect(dinoX, dinoY, dinoLargura,dinoAltura);
+   ctx.drawImage(imagensDino[frameDino], dinoX, dinoY, dinoLargura, dinoAltura);
 }
 
 function desenharCacto() {
