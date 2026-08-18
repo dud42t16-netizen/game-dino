@@ -22,6 +22,9 @@ for (let i = 1; i <= 4; i++) {
     imagem.src = `dino.png/dino_correndo_${i}.png`;
     imagensDino.push(imagem);
 }
+
+let imagemDinoPulo = new Image();
+imagemDinoPulo.src = "dino.png/dino_pulando_1";
 //dinofim//
 
 //CACTOCOMEÇO//
@@ -129,8 +132,35 @@ carregarRecorde();
 atualizar();
 
 function desenharDino() {
-   ctx.drawImage(imagensDino[frameDino], dinoX, dinoY, dinoLargura, dinoAltura);
+    if (dinoY === chao - dinoAltura) {
+        ctx.drawImage(
+            imagensDino[frameDino],
+            dinoX,
+            dinoY,
+            dinoLargura,
+            dinoAltura
+        );
+    } 
+    else {
+        ctx.drawImage(
+            imagemDinoPulo,
+            dinoX,
+            dinoY,
+            dinoLargura,
+            dinoAltura
+       );
+    }
 }
+
+/*function desenharDino() {
+    ctx.drawImage(
+        imagensDino[frameDino],
+        dinoX,
+        dinoY,
+        dinoLargura,
+        dinoAltura
+    );
+}*/
 
 function desenharCacto() {
     ctx.fillStyle = "black";
