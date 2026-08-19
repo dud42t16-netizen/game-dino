@@ -42,7 +42,7 @@ let pontoContado = false;
 let pontuacao = 0;
 let recorde = 0;
 
-function tamanhoCanvas() {
+/*function tamanhoCanvas() {
     let canvasLargura = window.innerWidth;
     let canvasAltura = window.innerHeight;
 
@@ -54,7 +54,27 @@ function tamanhoCanvas() {
         canvas.height = canvasAltura //+ "px";
         canvas.width = (canvasAltura * 2) //+ "px";
     }
+}*/
+
+function tamanhoCanvas() {
+    let larguraTela = window.innerWidth;
+    let alturaTela = window.innerHeight;
+
+    let larguraJogo = larguraTela;
+    let alturaJogo = larguraTela / 2;
+
+    if (alturaJogo > alturaTela) {
+        alturaJogo = alturaTela;
+        larguraJogo = alturaTela * 2;
+    }
+
+    canvas.style.width = larguraJogo + "px";
+    canvas.style.height = alturaJogo + "px";
 }
+
+tamanhoCanvas();
+
+window.addEventListener("resize", tamanhoCanvas);
 
 function atualizar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
