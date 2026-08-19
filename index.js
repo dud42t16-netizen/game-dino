@@ -24,7 +24,7 @@ for (let i = 1; i <= 4; i++) {
 }
 
 let imagemDinoPulo = new Image();
-imagemDinoPulo.src = "dino.png/dino_pulando_1";
+imagemDinoPulo.src = "dino.png/dino_pulando_1.png";
 //dinofim//
 
 //CACTOCOMEÇO//
@@ -151,16 +151,6 @@ function desenharDino() {
        );
     }
 }
-
-/*function desenharDino() {
-    ctx.drawImage(
-        imagensDino[frameDino],
-        dinoX,
-        dinoY,
-        dinoLargura,
-        dinoAltura
-    );
-}*/
 
 function desenharCacto() {
     ctx.fillStyle = "black";
