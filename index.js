@@ -1,7 +1,7 @@
 const canvas = document.getElementById("jogo");
 const ctx = canvas.getContext("2d");
 
-let chao = 361;
+let chao = canvas.height * 0.9025;
 
 //dinocomeço//
 let dinoLargura = 60;
@@ -42,30 +42,16 @@ let pontoContado = false;
 let pontuacao = 0;
 let recorde = 0;
 
-/*function tamanhoCanvas() {
-    let canvasLargura = window.innerWidth;
-    let canvasAltura = window.innerHeight;
-
-    if (canvasLargura / 2 <= canvasAltura) {
-        canvas.style.width = canvasLargura //+ //"px";
-        canvas.style.height = (canvasLargura / 2) //+ //"px";
-    }
-    else {
-        canvas.height = canvasAltura //+ "px";
-        canvas.width = (canvasAltura * 2) //+ "px";
-    }
-}*/
-
 function tamanhoCanvas() {
     let larguraTela = window.innerWidth;
     let alturaTela = window.innerHeight;
 
     let larguraJogo = larguraTela;
-    let alturaJogo = larguraTela / 2;
+    let alturaJogo = larguraTela * 9 / 16;
 
     if (alturaJogo > alturaTela) {
         alturaJogo = alturaTela;
-        larguraJogo = alturaTela * 2;
+        larguraJogo = alturaTela * 16 / 9;
     }
 
     canvas.style.width = larguraJogo + "px";
