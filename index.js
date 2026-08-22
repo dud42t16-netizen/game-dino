@@ -4,10 +4,10 @@ const ctx = canvas.getContext("2d");
 let chao = canvas.height * 0.9025;
 
 //dinocomeço//
-let dinoLargura = 60;
-let dinoAltura = 50;
+let dinoLargura = canvas.width * 0.0630;
+let dinoAltura = canvas.height * 0.1;
 
-let dinoX = 100;
+let dinoX = canvas.width * 0.125;
 let dinoY = chao - dinoAltura;
 
 let velocidadeY = 0;
@@ -28,13 +28,13 @@ imagemDinoPulo.src = "dino.png/dino_pulando_1.png";
 //dinofim//
 
 //CACTOCOMEÇO//
-let cactoLargura = 50;
-let cactoAltura = 35;
+let cactoLargura = canvas.width * 0.0530;
+let cactoAltura = canvas.height * 0.07;
 let cactoX = canvas.width;
 let cactoY = chao - cactoAltura;
 
 let cactoVelocidade = 5; 
-const aumentoVelocidade = 0.1;
+const aumentoVelocidade = 0.2;
 //CACTOFIM//
 
 let gameOver = false;
@@ -202,7 +202,7 @@ function reiniciarJogo() {
 
     dinoY = chao - dinoAltura;
     velocidadeY = 0;
-    cactoVelocidade = 4;
+    cactoVelocidade = 5;
 
     cactoX = canvas.width;
 }
