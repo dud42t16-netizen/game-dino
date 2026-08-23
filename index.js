@@ -29,12 +29,15 @@ imagemDinoPulo.src = "dino.png/dino_pulando_1.png";
 
 //CACTOCOMEÇO//
 let cactoLargura = canvas.width * 0.0530;
-let cactoAltura = canvas.height * 0.07;
+let cactoAltura = canvas.height * 0.09;
 let cactoX = canvas.width;
 let cactoY = chao - cactoAltura;
 
 let cactoVelocidade = 5; 
 const aumentoVelocidade = 0.2;
+
+let imagemCacto = new Image();
+imagemCacto.src = "dino.png/cacto_1.png";
 //CACTOFIM//
 
 let gameOver = false;
@@ -159,8 +162,13 @@ function desenharDino() {
 }
 
 function desenharCacto() {
-    ctx.fillStyle = "black";
-    ctx.fillRect(cactoX, cactoY, cactoLargura, cactoAltura);
+    ctx.drawImage(
+        imagemCacto,
+        cactoX,
+        cactoY,
+        cactoLargura,
+        cactoAltura
+    );
 }
 
 function desenharPonto() {
