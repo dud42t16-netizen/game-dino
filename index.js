@@ -11,7 +11,7 @@ let dinoX = canvas.width * 0.125;
 let dinoY = chao - dinoAltura;
 
 let velocidadeY = 0;
-let gravidade = 0.4;
+let gravidade = 0.3;
 
 let frameDino = 0;
 let contadorAnimacao = 0;
@@ -39,6 +39,9 @@ const aumentoVelocidade = 0.2;
 let imagemCacto = new Image();
 imagemCacto.src = "dino.png/cacto_1.png";
 //CACTOFIM//
+
+let imagemChao = new Image();
+imagemChao.src = "chao.png";
 
 let gameOver = false;
 let pontoContado = false;
@@ -82,6 +85,8 @@ function atualizar() {
     }
 
     cactoX -= cactoVelocidade;
+
+    desenharChao();
 
     desenharDino();
 
@@ -169,6 +174,21 @@ function desenharCacto() {
         cactoLargura,
         cactoAltura
     );
+}
+
+function desenharChao() {
+    let alturaChao = 32;
+    let larguraChao = 593;
+
+    for (let x = 0; x < canvas.width; x += larguraChao) {
+        ctx.drawImage(
+            imagemChao,
+            x,
+            chao - alturaChao,
+            larguraChao,
+            alturaChao
+        );
+    }
 }
 
 function desenharPonto() {
