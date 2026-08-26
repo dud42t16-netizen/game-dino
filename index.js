@@ -1,7 +1,7 @@
 const canvas = document.getElementById("jogo");
 const ctx = canvas.getContext("2d");
 
-let chao = canvas.height * 0.9025;
+let chao = canvas.height * 0.9990;
 
 //dinocomeço//
 let dinoLargura = canvas.width * 0.0630;
@@ -25,11 +25,14 @@ for (let i = 1; i <= 4; i++) {
 
 let imagemDinoPulo = new Image();
 imagemDinoPulo.src = "dino.png/dino_pulando_1.png";
+
+let imagemDinoMorto = new Image();
+imagemDinoMorto.src = "dino.png/dino_morto_1.png"
 //dinofim//
 
 //CACTOCOMEÇO//
 let cactoLargura = canvas.width * 0.0530;
-let cactoAltura = canvas.height * 0.09;
+let cactoAltura = canvas.height * 0.1;
 let cactoX = canvas.width;
 let cactoY = chao - cactoAltura;
 
@@ -41,7 +44,7 @@ imagemCacto.src = "dino.png/cacto_1.png";
 //CACTOFIM//
 
 let imagemChao = new Image();
-imagemChao.src = "chao.png";
+imagemChao.src = "dino.png/chao_tile.png";
 
 let gameOver = false;
 let pontoContado = false;
@@ -146,7 +149,16 @@ carregarRecorde();
 atualizar();
 
 function desenharDino() {
-    if (dinoY === chao - dinoAltura) {
+    if (gameOver) {
+        ctx.drawImage(
+            imagemDinoMorto,
+            dinoX,
+            dinoY,
+            dinoLargura,
+            dinoAltura
+        );
+    }
+    else if (dinoY === chao - dinoAltura) {
         ctx.drawImage(
             imagensDino[frameDino],
             dinoX,
@@ -154,7 +166,7 @@ function desenharDino() {
             dinoLargura,
             dinoAltura
         );
-    } 
+    }
     else {
         ctx.drawImage(
             imagemDinoPulo,
@@ -162,7 +174,7 @@ function desenharDino() {
             dinoY,
             dinoLargura,
             dinoAltura
-       );
+        );
     }
 }
 
@@ -177,8 +189,8 @@ function desenharCacto() {
 }
 
 function desenharChao() {
-    let alturaChao = 32;
-    let larguraChao = 593;
+    let alturaChao = 29;
+    let larguraChao = imagemChao.naturalWidth * (alturaChao / imagemChao.naturalHeight);
 
     for (let x = 0; x < canvas.width; x += larguraChao) {
         ctx.drawImage(
@@ -192,10 +204,10 @@ function desenharChao() {
 }
 
 function desenharPonto() {
-     ctx.font = '25px Arial';
+     ctx.font = '30px Arial';
      ctx.fillStyle = "black"
-     ctx.fillText("Pontos: " + pontuacao, canvas.width / 13, canvas.height / 10);
-     ctx.fillText("recorde:🏆" + recorde, canvas.width / 9, canvas.height / 5);
+     ctx.fillText("Pontos: " + pontuacao, canvas.width / 4, canvas.height / 10);
+     ctx.fillText("recorde:🏆" + recorde, canvas.width / 2, canvas.height / 10);
 }
 
 function pular() {
