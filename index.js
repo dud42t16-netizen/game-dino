@@ -28,6 +28,13 @@ imagemDinoPulo.src = "dino.png/dino_pulando_1.png";
 
 let imagemDinoMorto = new Image();
 imagemDinoMorto.src = "dino.png/dino_morto_1.png"
+imagemDinoMorto.onload = function() {
+    console.log("Sprite morto carregado!");
+};
+
+imagemDinoMorto.onerror = function() {
+    console.log("ERRO ao carregar o sprite morto!");
+};
 //dinofim//
 
 //CACTOCOMEÇO//
@@ -114,15 +121,17 @@ function atualizar() {
     }
     
     if (gameOver) {
-        ctx.textAlign = "center";
-        ctx.font = '30px Arial';
-        ctx.fillStyle = "black";
-        ctx.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2.4);
-        ctx.fillText("aperte R para reiniciar o jogo!", canvas.width / 2, canvas.height / 1.8);
-        ctx.fillText("ou toque na tela!", canvas.width / 2, canvas.height / 1.5)
+    desenharDino();
 
-        return;
-    }
+    ctx.textAlign = "center";
+    ctx.font = '30px Arial';
+    ctx.fillStyle = "black";
+    ctx.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2.4);
+    ctx.fillText("aperte R para reiniciar o jogo!", canvas.width / 2, canvas.height / 1.8);
+    ctx.fillText("ou toque na tela!", canvas.width / 2, canvas.height / 1.5);
+
+    return;
+}
 
     if (cactoX + cactoLargura < dinoX && !pontoContado) {
         pontuacao++;
