@@ -96,28 +96,26 @@ function atualizar() {
 
     cactoX -= cactoVelocidade;
 
-    desenharChao();
+     if (
+         !gameOver &&
+         !(cactoX > dinoX + dinoLargura || cactoX + cactoLargura < dinoX) &&
+         !(cactoY > dinoY + dinoAltura || cactoY + cactoAltura < dinoY)
+     ) {
+         gameOver = true;
+         console.log("game over");
+        }
 
-    desenharDino();
+     desenharChao();
 
-    desenharCacto();
+     desenharDino();
 
-    desenharPonto();
+     desenharCacto();
+
+     desenharPonto();
 
      if (cactoX < -cactoLargura) {
        cactoX = canvas.width;
        pontoContado = false;
-    }
-
-    if (
-        !gameOver 
-        &&
-        !(cactoX > dinoX + dinoLargura || cactoX + cactoLargura < dinoX)
-        &&
-        !(cactoY > dinoY + dinoAltura || cactoY + cactoAltura < dinoY)
-    ) {
-        gameOver = true;
-        console.log("game over");
     }
     
     if (gameOver) {
