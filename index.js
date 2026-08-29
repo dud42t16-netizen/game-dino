@@ -27,14 +27,8 @@ let imagemDinoPulo = new Image();
 imagemDinoPulo.src = "dino.png/dino_pulando_1.png";
 
 let imagemDinoMorto = new Image();
-imagemDinoMorto.src = "dino.png/dino_morto_1.png"
-imagemDinoMorto.onload = function() {
-    console.log("Sprite morto carregado!");
-};
-
-imagemDinoMorto.onerror = function() {
-    console.log("ERRO ao carregar o sprite morto!");
-};
+imagemDinoMorto.src = "dino.png/dino_morto_1.png";
+let dinoMortoAltura = canvas.height * 0.04;
 //dinofim//
 
 //CACTOCOMEÇO//
@@ -157,12 +151,16 @@ atualizar();
 
 function desenharDino() {
     if (gameOver) {
+        let dinoMortoLargura =
+            imagemDinoMorto.naturalWidth *
+            (dinoMortoAltura / imagemDinoMorto.naturalHeight);
+
         ctx.drawImage(
             imagemDinoMorto,
             dinoX,
-            dinoY,
-            dinoLargura,
-            dinoAltura
+            chao - dinoMortoAltura,
+            dinoMortoLargura,
+            dinoMortoAltura
         );
     }
     else if (dinoY === chao - dinoAltura) {
