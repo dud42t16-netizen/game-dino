@@ -1,7 +1,7 @@
 const canvas = document.getElementById("jogo");
 const ctx = canvas.getContext("2d");
 
-let chao = canvas.height * 0.9990;
+let chao = canvas.height * 0.9090;
 
 //dinocomeço//
 let dinoLargura = canvas.width * 0.0630;
@@ -44,8 +44,11 @@ let imagemCacto = new Image();
 imagemCacto.src = "dino.png/cacto_1.png";
 //CACTOFIM//
 
+let imagemFundo = new Image();
+imagemFundo.src = "dino.png/fundo2.jpg";
+
 let imagemChao = new Image();
-imagemChao.src = "dino.png/chao_tile.png";
+imagemChao.src = "dino.png/chao2.png";
 
 let gameOver = false;
 let pontoContado = false;
@@ -74,6 +77,8 @@ window.addEventListener("resize", tamanhoCanvas);
 
 function atualizar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.drawImage(imagemFundo, 0, 0, canvas.width, canvas.height);
 
     contadorAnimacao++;
     if (contadorAnimacao >= 10) {
