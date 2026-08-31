@@ -10,6 +10,9 @@ let dinoAltura = canvas.height * 0.1;
 let dinoX = canvas.width * 0.125;
 let dinoY = chao - dinoAltura;
 
+let hitboxDinoLargura = dinoLargura * 0.65;
+let hitboxDinoAltura = dinoAltura * 0.75;
+
 let velocidadeY = 0;
 let gravidade = 0.3;
 
@@ -37,11 +40,21 @@ let cactoAltura = canvas.height * 0.1;
 let cactoX = canvas.width;
 let cactoY = chao - cactoAltura;
 
+let hitboxCactoLargura = cactoLargura * 0.65;
+let hitboxCactoAltura = cactoAltura * 0.85;
+
 let cactoVelocidade = 5; 
 const aumentoVelocidade = 0.2;
 
-let imagemCacto = new Image();
-imagemCacto.src = "dino.png/cacto_1.png";
+let imagensCacto = [];
+
+for (let i = 1; i <= 4; i++) {
+    let imagem = new Image();
+    imagem.src = `dino.png/cacto_${i}.png`;
+    imagensCacto.push(imagem);
+}
+
+let cactoAtual = 0;
 //CACTOFIM//
 
 let imagemFundo = new Image();
@@ -95,14 +108,22 @@ function atualizar() {
 
     cactoX -= cactoVelocidade;
 
-     if (
-         !gameOver &&
-         !(cactoX > dinoX + dinoLargura || cactoX + cactoLargura < dinoX) &&
-         !(cactoY > dinoY + dinoAltura || cactoY + cactoAltura < dinoY)
-     ) {
-         gameOver = true;
-         console.log("game over");
-        }
+     let dinoHitboxX = dinoX + (dinoLargura - hitboxDinoLargura) / 2;
+     let dinoHitboxY = dinoY + (dinoAltura - hitboxDinoAltura) / 2;
+
+     let cactoHitboxX = cactoX + (cactoLargura - hitboxCactoLargura) / 2;
+     let cactoHitboxY = cactoY + (cactoAltura - hitboxCactoAltura);
+
+    if (
+        !gameOver &&
+        dinoHitboxX < cactoHitboxX + hitboxCactoLargura &&
+        dinoHitboxX + hitboxDinoLargura > cactoHitboxX &&
+        dinoHitboxY < cactoHitboxY + hitboxCactoAltura &&
+        dinoHitboxY + hitboxDinoAltura > cactoHitboxY
+    ) {
+        gameOver = true;
+        console.log("game over");
+    }
 
      desenharChao();
 
@@ -112,23 +133,23 @@ function atualizar() {
 
      desenharPonto();
 
-     if (cactoX < -cactoLargura) {
-       cactoX = canvas.width;
-       pontoContado = false;
-    }
-    
+      if (cactoX < -cactoLargura) {
+          cactoX = canvas.width;
+          pontoContado = false;
+
+          cactoAtual = (cactoAtual + 1) % 4;
+        }
+
     if (gameOver) {
-    desenharDino();
+        ctx.textAlign = "center";
+        ctx.font = '30px Arial';
+        ctx.fillStyle = "black";
+        ctx.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2.4);
+        ctx.fillText("aperte R para reiniciar o jogo!", canvas.width / 2, canvas.height / 1.8);
+        ctx.fillText("ou toque na tela!", canvas.width / 2, canvas.height / 1.5);
 
-    ctx.textAlign = "center";
-    ctx.font = '30px Arial';
-    ctx.fillStyle = "black";
-    ctx.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2.4);
-    ctx.fillText("aperte R para reiniciar o jogo!", canvas.width / 2, canvas.height / 1.8);
-    ctx.fillText("ou toque na tela!", canvas.width / 2, canvas.height / 1.5);
-
-    return;
-}
+        return;
+    }
 
     if (cactoX + cactoLargura < dinoX && !pontoContado) {
         pontuacao++;
@@ -190,7 +211,7 @@ function desenharDino() {
 
 function desenharCacto() {
     ctx.drawImage(
-        imagemCacto,
+        imagensCacto[cactoAtual],
         cactoX,
         cactoY,
         cactoLargura,
