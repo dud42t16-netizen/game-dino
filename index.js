@@ -63,6 +63,28 @@ imagemFundo.src = "dino.png/fundo2.jpg";
 let imagemChao = new Image();
 imagemChao.src = "dino.png/chao2.png";
 
+// MÚSICA DO JOGO
+let musica = new Audio("dino.png/musica.mp3.mpeg");
+
+musica.loop = true;
+musica.volume = 0.5;
+
+let musicaIniciada = false;
+
+function iniciarMusica() {
+    if (!musicaIniciada) {
+        musica.play();
+        musicaIniciada = true;
+    }
+}
+
+function pararMusica() {
+    musica.pause();
+    musica.currentTime = 0;
+    musicaIniciada = false;
+}
+//
+
 let gameOver = false;
 let pontoContado = false;
 let pontuacao = 0;
@@ -122,6 +144,7 @@ function atualizar() {
         dinoHitboxY + hitboxDinoAltura > cactoHitboxY
     ) {
         gameOver = true;
+        pararMusica();
         console.log("game over");
     }
 
@@ -248,6 +271,7 @@ function pular() {
 }
 function teclapressionada(evento) {
     if (evento.code === "Space") {
+        iniciarMusica();
         pular();
     }
     if (evento.code === "KeyR" && gameOver) {
@@ -257,6 +281,8 @@ function teclapressionada(evento) {
 }
 
 function toquenatela() {
+    iniciarMusica();
+
     if (gameOver) {
         reiniciarJogo();
         atualizar();
@@ -276,6 +302,10 @@ function reiniciarJogo() {
     cactoVelocidade = 5;
 
     cactoX = canvas.width;
+
+    musica.currentTime = 0;
+    musica.play();
+    musicaIniciada = true;
 }
 
 function carregarRecorde() {
@@ -288,5 +318,4 @@ function carregarRecorde() {
 
 document.addEventListener("keydown", teclapressionada);
 window.addEventListener("resize", tamanhoCanvas);
-canvas.addEventListener("touchstart", pular);
 canvas.addEventListener("touchstart", toquenatela);
