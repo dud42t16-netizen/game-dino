@@ -67,7 +67,7 @@ imagemChao.src = "dino.png/chao2.png";
 let musica = new Audio("dino.png/musica.mp3.mpeg");
 
 musica.loop = true;
-musica.volume = 0.5;
+musica.volume = 0.4;
 
 let musicaIniciada = false;
 
